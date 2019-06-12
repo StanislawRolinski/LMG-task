@@ -8,9 +8,6 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] Animator animator;
 
-    public bool useController;
-
-
     float moveX;
     float moveY;
 

@@ -13,11 +13,13 @@ public class GunController : MonoBehaviour
     private Camera mainCamera;
 
     private bool isFiring;
-    public bool useController;
+    [SerializeField] bool useController;
 
     [SerializeField] Transform firePoint;
 
     public bool IsFiring { get => isFiring; set => isFiring = value; }
+    public bool UseController { get => useController; set => useController = value; }
+
     private void Start()
     {
         mainCamera = FindObjectOfType<Camera>();
@@ -26,7 +28,7 @@ public class GunController : MonoBehaviour
     {
 
         //Rotate with Mouse
-        if (!useController)
+        if (!UseController)
         {
 
             Ray cameraRay = mainCamera.ScreenPointToRay(Input.mousePosition);
@@ -65,7 +67,7 @@ public class GunController : MonoBehaviour
         }
 
         //Rotate with controller
-        if (useController)
+        if (UseController)
         {
             Vector3 playerDirection = Vector3.right * Input.GetAxisRaw("RHorizontal") +
                 Vector3.forward * -Input.GetAxisRaw("RVertical");
@@ -74,11 +76,11 @@ public class GunController : MonoBehaviour
                 transform.rotation = Quaternion.LookRotation(playerDirection, Vector3.up);
             }
 
-            if (Input.GetKeyDown(KeyCode.Joystick1Button5))
+            if (Input.GetKeyDown(KeyCode.JoystickButton5))
             {
                 IsFiring = true;
             }
-            if (Input.GetKeyUp(KeyCode.Joystick1Button5))
+            if (Input.GetKeyUp(KeyCode.JoystickButton5))
             {
                 IsFiring = false;
             }
