@@ -13,6 +13,7 @@ public class GunController : MonoBehaviour
     private Camera mainCamera;
 
     private bool isFiring;
+    public bool useController;
 
     [SerializeField] Transform firePoint;
 
@@ -23,40 +24,65 @@ public class GunController : MonoBehaviour
     }
     void Update()
     {
-        
-        //Rotate with Mouse
-        Ray cameraRay = mainCamera.ScreenPointToRay(Input.mousePosition);
-        Plane groundPlane = new Plane(Vector3.up, Vector3.zero);
-        float rayLenght;
 
-        if (groundPlane.Raycast(cameraRay, out rayLenght))
+        //Rotate with Mouse
+        if (!useController)
         {
-            Vector3 pointToShot = cameraRay.GetPoint(rayLenght);
-            transform.LookAt(new Vector3(pointToShot.x, transform.position.y, pointToShot.z));
-        }
-        if (Input.GetMouseButtonDown(0))
-        {
-            IsFiring = true;
-        }
-        if (Input.GetMouseButtonUp(0))
-        {
-            IsFiring = false;
-        }
-        if (IsFiring)
-        {
-            timeSinceLastShoot -= Time.deltaTime;
-            if(timeSinceLastShoot <= 0)
+
+            Ray cameraRay = mainCamera.ScreenPointToRay(Input.mousePosition);
+            Plane groundPlane = new Plane(Vector3.up, Vector3.zero);
+            float rayLenght;
+
+            if (groundPlane.Raycast(cameraRay, out rayLenght))
             {
-                timeSinceLastShoot = shotDelay;
-                ShotController newBullet = Instantiate(bullet, firePoint.position, firePoint.rotation) as ShotController;
-                bullet.BulletSpeed = bulletSpeed;
+                Vector3 pointToShot = cameraRay.GetPoint(rayLenght);
+                Debug.DrawLine(cameraRay.origin, pointToShot, Color.black);
+
+                transform.LookAt(new Vector3(pointToShot.x, transform.position.y, pointToShot.z));
+            }
+            if (Input.GetMouseButtonDown(0))
+            {
+                IsFiring = true;
+            }
+            if (Input.GetMouseButtonUp(0))
+            {
+                IsFiring = false;
+            }
+            if (IsFiring)
+            {
+                timeSinceLastShoot -= Time.deltaTime;
+                if (timeSinceLastShoot <= 0)
+                {
+                    timeSinceLastShoot = shotDelay;
+                    ShotController newBullet = Instantiate(bullet, firePoint.position, firePoint.rotation) as ShotController;
+                    bullet.BulletSpeed = bulletSpeed;
+                }
+            }
+            else
+            {
+                timeSinceLastShoot = 0;
             }
         }
-        else
+
+        //Rotate with controller
+        if (useController)
         {
-            timeSinceLastShoot = 0;
+            Vector3 playerDirection = Vector3.right * Input.GetAxisRaw("RHorizontal") +
+                Vector3.forward * -Input.GetAxisRaw("RVertical");
+            if(playerDirection.sqrMagnitude > 0.0f)
+            {
+                transform.rotation = Quaternion.LookRotation(playerDirection, Vector3.up);
+            }
+
+            if (Input.GetKeyDown(KeyCode.Joystick1Button5))
+            {
+                IsFiring = true;
+            }
+            if (Input.GetKeyUp(KeyCode.Joystick1Button5))
+            {
+                IsFiring = false;
+            }
         }
-        
     }
 }
 
