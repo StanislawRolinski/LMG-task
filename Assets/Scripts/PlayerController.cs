@@ -8,18 +8,22 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] Animator animator;
 
+    public bool useController;
+
+
+    float moveX;
+    float moveY;
 
     void Start()
     {
 
     }
 
-
     void Update()
     {
 
-        float moveX = Input.GetAxis("Horizontal") * movementSpeed * Time.deltaTime;
-        float moveY = Input.GetAxis("Vertical") * movementSpeed * Time.deltaTime;
+        moveX = Input.GetAxis("Horizontal") * movementSpeed * Time.deltaTime;
+        moveY = Input.GetAxis("Vertical") * movementSpeed * Time.deltaTime;
 
         transform.Translate(moveX, moveY, 0f);
 
@@ -35,4 +39,5 @@ public class PlayerController : MonoBehaviour
             animator.SetFloat("lastMoveY", Input.GetAxisRaw("Vertical"));
         }
     }
+        
 }
