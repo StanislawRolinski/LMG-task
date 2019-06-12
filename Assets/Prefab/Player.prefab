@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 896971116}
   m_Layer: 9
   m_Name: Gun
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -107,6 +107,7 @@ GameObject:
   - component: {fileID: 2604308911317442129}
   - component: {fileID: 1810570920}
   - component: {fileID: 1810570921}
+  - component: {fileID: 1810570924}
   m_Layer: 9
   m_Name: Player
   m_TagString: Player
@@ -236,7 +237,20 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.5
+  m_Radius: 0.9877423
   m_Height: 2.0000005
   m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: -3.9010907e-16, z: -0.097548485}
+--- !u!114 &1810570924
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8879790341038015216}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f78ee13aabe0b2d49a907828e528ed82, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 3
