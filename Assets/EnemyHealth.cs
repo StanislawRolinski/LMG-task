@@ -14,12 +14,16 @@ public class EnemyHealth : MonoBehaviour
         if (health <= 0)
         {
             SceneController.current.AddToScore(scorePoints);
-            Destroy(gameObject);
+            gameObject.SetActive(false);
         }
     }
 
     public void TakeDamage(int damage)
     {
         health -= damage;
+    }
+    private void OnEnable()
+    {
+        health = 1;
     }
 }

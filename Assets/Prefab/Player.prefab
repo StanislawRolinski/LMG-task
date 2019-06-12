@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 896971116}
   m_Layer: 9
   m_Name: Gun
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -76,7 +76,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bullet: {fileID: 919651506884555261, guid: 9fd1f257512507447b9527bcad75ea41, type: 3}
-  bulletSpeed: 10
+  bulletSpeed: 35
   shotDelay: 1
   useController: 1
   firePoint: {fileID: 831048525}

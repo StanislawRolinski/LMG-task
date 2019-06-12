@@ -11,11 +11,6 @@ public class PlayerController : MonoBehaviour
     float moveX;
     float moveY;
 
-    void Start()
-    {
-
-    }
-
     void Update()
     {
 
