@@ -5,23 +5,22 @@ using UnityEngine;
 public class PlayerHealth : MonoBehaviour
 {
     [SerializeField] int health;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
+    public int Health { get => health; set => health = value; }
+
+
     void Update()
     {
-        if (health <= 0)
+        if (Health <= 0)
         {
+            SceneController.current.CheckScore();
             gameObject.SetActive(false);
         }
     }
 
     public void TakeDamage(int damage)
     {
-        health -= damage;
+        Health -= damage;
+        SceneController.current.SetLives();
     }
 }

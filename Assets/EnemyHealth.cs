@@ -5,6 +5,7 @@ using UnityEngine;
 public class EnemyHealth : MonoBehaviour
 {
     [SerializeField] int health = 1;
+    [SerializeField] int scorePoints = 3;
 
 
     // Update is called once per frame
@@ -12,6 +13,7 @@ public class EnemyHealth : MonoBehaviour
     {
         if (health <= 0)
         {
+            SceneController.current.AddToScore(scorePoints);
             Destroy(gameObject);
         }
     }
