@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class PlayerHealth : MonoBehaviour
 {
@@ -13,7 +11,7 @@ public class PlayerHealth : MonoBehaviour
     public int Health { get => health; set => health = value; }
 
 
-    void Update()
+    private void Update()
     {
         if (Health <= 0)
         {

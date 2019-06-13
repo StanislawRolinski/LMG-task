@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
@@ -9,17 +8,16 @@ public class EnemySpawner : MonoBehaviour
 
     [SerializeField] float timeToEncreaseDifficulty = 10;
     private float timeSinceLastDifficultyEncrease = 0;
+
     [SerializeField] List<Transform> spawnPositions;
 
 
-    // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         SpawnEnemy();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
         if (timeSinceLastSpawn >= spawnSpeed)
         {
@@ -29,8 +27,15 @@ public class EnemySpawner : MonoBehaviour
         }
         if(timeSinceLastDifficultyEncrease >= timeToEncreaseDifficulty)
         {
-            timeSinceLastDifficultyEncrease = 0;
-            spawnSpeed -= 0.5f;
+            if(spawnSpeed <= .5f)
+            {
+                spawnSpeed = .5f;
+            }
+            else
+            {
+                timeSinceLastDifficultyEncrease = 0;
+                spawnSpeed -= 0.5f;
+            }
         }
         timeSinceLastSpawn += Time.deltaTime;
         timeSinceLastDifficultyEncrease += Time.deltaTime;

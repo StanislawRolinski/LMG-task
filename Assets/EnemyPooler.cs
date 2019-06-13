@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyPooler : MonoBehaviour
@@ -8,15 +7,15 @@ public class EnemyPooler : MonoBehaviour
     [SerializeField] GameObject enemy;
     [SerializeField] int poolAmount = 32;
 
-    List<GameObject> pooledEnemies;
+    private List<GameObject> pooledEnemies;
 
 
     private void Awake()
     {
         current = this;
     }
-    // Start is called before the first frame update
-    void Start()
+
+    private void Start()
     {
         pooledEnemies = new List<GameObject>();
         for (int i = 0; i < poolAmount; i++)

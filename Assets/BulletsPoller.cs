@@ -1,26 +1,23 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class BulletsPoller : MonoBehaviour
 {
     public static BulletsPoller current;
+
     [SerializeField] GameObject bullet;
     [SerializeField] int poolAmount = 30;
+    private List<GameObject> pooledBullets;
 
-    Color bulletColor;
-
-    List<GameObject> pooledBullets;
-
+    private Color bulletColor;
 
     private void Awake()
     {
         current = this;
     }
-    // Start is called before the first frame update
-    void Start()
+
+    private void Start()
     {
-        bulletColor = SceneController.current.ChosenPlayerColor;
         pooledBullets = new List<GameObject>();
         for (int i = 0; i < poolAmount; i++)
         {

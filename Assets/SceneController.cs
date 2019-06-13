@@ -1,51 +1,48 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class SceneController : MonoBehaviour
 {
+    //MainGame Panel
+    [SerializeField] GameObject mainPanel;
     [SerializeField] Text livesText;
     [SerializeField] Text scoreText;
     [SerializeField] Text highestScoreText;
     [SerializeField] PlayerHealth playerHealth;
 
+    private int lives;
+    private int score = 0;
+    private int highestScore = 0;
+
+    //Start Panel
     [SerializeField] GameObject startPanel;
-    [SerializeField] GameObject mainPanel;
+    [SerializeField] Text colorText;
+
+    private List<Color> colors;
+    private string chosenColorText = "Your color is: ";
+
+    private Color chosenPlayerColor;
+    public Color ChosenPlayerColor { get => chosenPlayerColor; set => chosenPlayerColor = value; }
+
+    //EndGame Panel
     [SerializeField] GameObject endGamePanel;
     [SerializeField] Text endGameHighestScoreText;
 
 
-    [SerializeField] Text colorText;
-    private string chosenColorText = "Your color is: ";
-
     public static SceneController current;
-
-    private int lives;
-    private int score = 0;
-    private int highestScore = 0;
-    private List<Color> colors;
-
-    private Color chosenPlayerColor;
-
-    public Color ChosenPlayerColor { get => chosenPlayerColor; set => chosenPlayerColor = value; }
 
     private void Awake()
     {
         current = this;
-        colors = new List<Color>();
-        colors.Add(Color.red);
-        colors.Add(Color.yellow);
-        colors.Add(Color.green);
-        colors.Add(Color.blue);
+        SetColorsAvailable();
         startPanel.SetActive(true);
         mainPanel.SetActive(false);
         endGamePanel.SetActive(false);
     }
-    // Start is called before the first frame update
-    void Start()
+
+    private void Start()
     {
         scoreText.text = "Score: " + score;
         SetLives();
@@ -53,7 +50,14 @@ public class SceneController : MonoBehaviour
         SetPreviusChosenColor();
         Time.timeScale = 0;
     }
-
+    private void SetColorsAvailable()
+    {
+        colors = new List<Color>();
+        colors.Add(Color.red);
+        colors.Add(Color.yellow);
+        colors.Add(Color.green);
+        colors.Add(Color.blue);
+    }
     public void SetPlayerColor(int colorIndex)
     {
         ChosenPlayerColor = colors[colorIndex];

@@ -1,21 +1,18 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
     private Rigidbody rb;
     [SerializeField] float moveSpeed;
     private PlayerController player;
-    // Start is called before the first frame update
-    void Start()
+
+    private void Start()
     {
         rb = GetComponent<Rigidbody>();
         player = FindObjectOfType<PlayerController>();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
         if (!player) return;
         transform.LookAt(player.transform.position);

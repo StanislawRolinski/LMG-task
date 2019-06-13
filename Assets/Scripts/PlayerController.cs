@@ -1,17 +1,14 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] float movementSpeed = 10f;
+    private float moveX;
+    private float moveY;
 
     [SerializeField] Animator animator;
 
-    float moveX;
-    float moveY;
-
-    void Update()
+    private void FixedUpdate()
     {
 
         moveX = Input.GetAxis("Horizontal") * movementSpeed * Time.deltaTime;

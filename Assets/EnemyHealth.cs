@@ -1,15 +1,11 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class EnemyHealth : MonoBehaviour
 {
     [SerializeField] int health = 1;
     [SerializeField] int scorePoints = 3;
 
-
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
         if (health <= 0)
         {

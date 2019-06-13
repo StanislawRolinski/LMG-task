@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class GunController : MonoBehaviour
 {
@@ -23,9 +21,8 @@ public class GunController : MonoBehaviour
     {
         mainCamera = FindObjectOfType<Camera>();
     }
-    void Update()
+    private void Update()
     {
-
         //Rotate with Mouse
         if (!UseController)
         {
