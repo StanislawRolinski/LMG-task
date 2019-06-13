@@ -57,7 +57,7 @@ public class SceneController : MonoBehaviour
     public void SetPlayerColor(int colorIndex)
     {
         ChosenPlayerColor = colors[colorIndex];
-        colorText.text = chosenColorText + colors[colorIndex].ToString();
+        colorText.text = chosenColorText + GetColorName(colorIndex);
     }
 
     public void SetPreviusChosenColor()
@@ -66,13 +66,29 @@ public class SceneController : MonoBehaviour
         if (PlayerPrefs.HasKey("ChosenColor"))
         {
             ChosenPlayerColor = colors[PlayerPrefs.GetInt("ChosenColor")];
-            colorText.text = chosenColorText + colors[PlayerPrefs.GetInt("ChosenColor")].ToString();
+            colorText.text = chosenColorText + GetColorName(PlayerPrefs.GetInt("ChosenColor"));
         }
         else
         {
             PlayerPrefs.SetInt("ChosenColor", 0);
-            colorText.text = chosenColorText + colors[0].ToString();
+            colorText.text = chosenColorText + GetColorName(0);
         }
+    }
+
+    private string GetColorName(int colorToNameIndex)
+    {
+        switch (colorToNameIndex)
+        {
+            case 0:
+                return "Red";
+            case 1:
+                return "Yellow";
+            case 2:
+                return "Green";
+            case 3:
+                return "Blue";
+        }
+        return "";
     }
 
     private void SetHighestScore()
