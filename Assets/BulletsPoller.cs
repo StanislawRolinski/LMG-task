@@ -8,6 +8,8 @@ public class BulletsPoller : MonoBehaviour
     [SerializeField] GameObject bullet;
     [SerializeField] int poolAmount = 30;
 
+    Color bulletColor;
+
     List<GameObject> pooledBullets;
 
 
@@ -18,6 +20,7 @@ public class BulletsPoller : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        bulletColor = SceneController.current.ChosenPlayerColor;
         pooledBullets = new List<GameObject>();
         for (int i = 0; i < poolAmount; i++)
         {
@@ -37,5 +40,13 @@ public class BulletsPoller : MonoBehaviour
             }
         }
         return null;
+    }
+
+    public void SetBulletsCollor()
+    {
+        foreach (GameObject bullet in pooledBullets)
+        {
+            bullet.GetComponent<Renderer>().material.color = SceneController.current.ChosenPlayerColor;
+        }
     }
 }
