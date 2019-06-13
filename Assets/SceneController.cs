@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class SceneController : MonoBehaviour
@@ -14,6 +15,7 @@ public class SceneController : MonoBehaviour
     [SerializeField] GameObject startPanel;
     [SerializeField] GameObject mainPanel;
     [SerializeField] GameObject endGamePanel;
+    [SerializeField] Text endGameHighestScoreText;
 
 
     [SerializeField] Text colorText;
@@ -99,11 +101,11 @@ public class SceneController : MonoBehaviour
             if (score > highestScore)
             {
                 PlayerPrefs.SetInt("HighScore", score);
-                //highestScoreText.text += "    Congratulations! You have set new highest score! " + score;
+            endGameHighestScoreText.text = "Congratulations! You have set new highest score! " + score;
             }
             else
             {
-               // highestScoreText.text += "    Highest score is: " + highScore + ". Try one more time!";
+            endGameHighestScoreText.text = "Highest score is: " + highestScore + ". Try one more time!";
             }
     }
     public void StartGame()
@@ -113,5 +115,16 @@ public class SceneController : MonoBehaviour
         mainPanel.SetActive(true);
         Time.timeScale = 1;
         PlayerPrefs.SetInt("ChosenColor", colors.IndexOf(ChosenPlayerColor));
+    }
+    public void RestartGame()
+    {
+        SceneManager.LoadScene(0);
+    }
+    public void SetActiveEndGamePanel()
+    {
+        CheckScore();
+        startPanel.SetActive(false);
+        mainPanel.SetActive(false);
+        endGamePanel.SetActive(true);
     }
 }

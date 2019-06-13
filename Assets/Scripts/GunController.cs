@@ -41,7 +41,7 @@ public class GunController : MonoBehaviour
 
                 transform.LookAt(new Vector3(pointToShot.x, transform.position.y, pointToShot.z));
             }
-            if (Input.GetMouseButtonDown(0))
+            if (Input.GetMouseButtonDown(0) && Time.timeScale == 1)
             {
                 IsFiring = true;
             }
@@ -63,7 +63,7 @@ public class GunController : MonoBehaviour
                 transform.rotation = Quaternion.LookRotation(playerDirection, Vector3.up);
             }
 
-            if (Input.GetKeyDown(KeyCode.JoystickButton5))
+            if (Input.GetKeyDown(KeyCode.JoystickButton5) && Time.timeScale == 1)
             {
                 IsFiring = true;
             }

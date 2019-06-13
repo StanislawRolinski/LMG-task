@@ -18,6 +18,8 @@ public class PlayerHealth : MonoBehaviour
         if (Health <= 0)
         {
             SceneController.current.CheckScore();
+            Time.timeScale = 0;
+            SceneController.current.SetActiveEndGamePanel();
             gameObject.SetActive(false);
         }
         timeSinceLastImmune += Time.deltaTime;
