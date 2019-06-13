@@ -6,7 +6,6 @@ public class GunController : MonoBehaviour
 {
 
     [SerializeField] ShotController bullet;
-    [SerializeField] float bulletSpeed = 10;
 
     [SerializeField] float shotDelay = .5f;
     private float timeSinceLastShoot;
@@ -51,19 +50,7 @@ public class GunController : MonoBehaviour
                 IsFiring = false;
             }
             if (IsFiring)
-            {
-                timeSinceLastShoot -= Time.deltaTime;
-                if (timeSinceLastShoot <= 0)
-                {
-                    timeSinceLastShoot = shotDelay;
-                    ShotController newBullet = Instantiate(bullet, firePoint.position, firePoint.rotation) as ShotController;
-                    bullet.BulletSpeed = bulletSpeed;
-                }
-            }
-            else
-            {
-                timeSinceLastShoot = 0;
-            }
+                Fire();
         }
 
         //Rotate with controller
@@ -83,6 +70,24 @@ public class GunController : MonoBehaviour
             if (Input.GetKeyUp(KeyCode.JoystickButton5))
             {
                 IsFiring = false;
+            }
+            if (IsFiring)
+                Fire();
+        }
+    }
+
+    private void Fire()
+    {
+        timeSinceLastShoot -= Time.deltaTime;
+        if (timeSinceLastShoot <= 0)
+        {
+            timeSinceLastShoot = shotDelay;
+            GameObject obj = BulletsPoller.current.GetPooledEnemies();
+            if (obj != null)
+            {
+                obj.transform.position = firePoint.position;
+                obj.transform.rotation = firePoint.rotation;
+                obj.SetActive(true);
             }
         }
     }

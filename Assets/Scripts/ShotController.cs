@@ -16,7 +16,8 @@ public class ShotController : MonoBehaviour
        transform.Translate(Vector3.forward * BulletSpeed * Time.deltaTime);
         if(liveTime <= 0)
         {
-            Destroy(gameObject);
+            liveTime = 5f;
+            gameObject.SetActive(false);
         }
     }
     private void OnCollisionEnter(Collision collision)
@@ -24,7 +25,7 @@ public class ShotController : MonoBehaviour
         if(collision.gameObject.tag == "Enemy")
         {
             collision.gameObject.GetComponent<EnemyHealth>().TakeDamage(bulletDamage);
-            Destroy(gameObject);
+            gameObject.SetActive(false);
         }
     }
 }

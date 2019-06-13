@@ -24,6 +24,6 @@ public class EnemyHealth : MonoBehaviour
     }
     private void OnEnable()
     {
-        health = 1;
+        health = 3;
     }
 }

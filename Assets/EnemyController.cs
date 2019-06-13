@@ -17,12 +17,12 @@ public class EnemyController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!player) return;
         transform.LookAt(player.transform.position);
-
-
     }
     private void FixedUpdate()
     {
+        if (!player) return;
         rb.velocity = transform.forward * moveSpeed * Time.deltaTime;
     }
 }
